@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1076369139094",
+    "project_id": "forum-test-86506",
+    "storage_bucket": "forum-test-86506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076369139094:android:54ebb656a04f54ae44a9b7",
+        "android_client_info": {
+          "package_name": "com.kitoko.forum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076369139094-439ge998igg3ror8b13pe3av7lv68j3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kitoko.forum",
+            "certificate_hash": "19b158a4f7e9827bb0af56df5dbc1003c37931c8"
+          }
+        },
+        {
+          "client_id": "1076369139094-tjqc1cj0r7uuq7rg90eeg4ravustp4vc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_RnvyEKrj00g8Fb1SUWoShmr2r6dwGOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076369139094-tjqc1cj0r7uuq7rg90eeg4ravustp4vc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
