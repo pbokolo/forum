@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startChat(){
         startActivity(new Intent(this, ChatActivity.class));
+        this.finish();
     }
     private void startSignIn() {
         Intent signInIntent =
