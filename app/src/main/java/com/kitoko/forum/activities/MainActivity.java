@@ -32,21 +32,14 @@ public class MainActivity extends AppCompatActivity {
         vBinder = ActivityMainBinding.inflate(getLayoutInflater());
         vBinder.conBtn.setOnClickListener((v) -> startSignIn());
         if (isSignedIn()) {
-            startChat();
+            startForum();
         } else {
             startSignIn();
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(!isSignedIn())
-            vBinder.conBtn.setVisibility(View.VISIBLE);
-    }
-
-    private void startChat(){
-        startActivity(new Intent(this, ChatActivity.class));
+    private void startForum(){
+        startActivity(new Intent(this, ForumActivity.class));
         this.finish();
     }
     private void startSignIn() {
@@ -63,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
-
         if (result.getResultCode() == RESULT_OK) {
-            // Succes des l'opération
-            startChat();
+            // Succes de l'opération
+            startForum();
             finish();
         } else {
             // Echec de l'opération

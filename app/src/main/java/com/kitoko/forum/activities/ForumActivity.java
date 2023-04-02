@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.kitoko.forum.R;
 
-public class ChatActivity extends AppCompatActivity {
+public class ForumActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_forum);
     }
 }
