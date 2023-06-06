@@ -4,7 +4,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -17,19 +16,18 @@ import com.kitoko.forum.R;
 import com.kitoko.forum.databinding.ActivityMainBinding;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding vBinder;
-
-    private ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
-            (result) -> onSignInResult(result));
+            this::onSignInResult);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        vBinder = ActivityMainBinding.inflate(getLayoutInflater());
+        com.kitoko.forum.databinding.ActivityMainBinding vBinder = ActivityMainBinding.inflate(getLayoutInflater());
         vBinder.conBtn.setOnClickListener((v) -> startSignIn());
         if (isSignedIn()) {
             startForum();
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Pas de connexion Internet
-            if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+            if (Objects.requireNonNull(response.getError()).getErrorCode() == ErrorCodes.NO_NETWORK) {
                 Toast.makeText(this, "Pas de connexion Internet", Toast.LENGTH_LONG).show();
                 return;
             }
