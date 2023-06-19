@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,8 @@ public class ProfileFragment extends Fragment {
         vBinder.usrnmLbl.setText(username);
         vBinder.phoneNumberLbl.setText(phone);
         vBinder.emailLbl.setText(email);
+
+        vBinder.usrnmLbl.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.profile2update));
 
         vBinder.signoutBtn.setOnClickListener(v ->
             FirebaseAuth.getInstance().signOut()
