@@ -51,5 +51,6 @@ public class ProfileFragment extends Fragment {
         );
 
         vBinder.delAccBtn.setOnClickListener(v -> FirebaseAuth.getInstance().getCurrentUser().delete());
+
     }
 }
