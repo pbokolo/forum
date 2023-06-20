@@ -20,10 +20,10 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/profile2update"
-            app:destination="@id/updateFragment" />
+            app:destination="@id/updateBtmSheet" />
     </fragment>
     <dialog
-        android:id="@+id/updateFragment"
-        android:name="com.kitoko.forum.activities.UpdateFragment"
-        android:label="UpdateFragment" />
+        android:id="@+id/updateBtmSheet"
+        android:name="com.kitoko.forum.activities.UpdateBtmSheet"
+        android:label="UpdateBtmSheet" />
 </navigation>
