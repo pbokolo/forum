@@ -1,6 +1,5 @@
 package com.kitoko.forum.activities;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.kitoko.forum.databinding.BottomSheetUpdateBinding;
 
 public class UpdateBtmSheet extends BottomSheetDialogFragment {
@@ -41,7 +44,7 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
 
     private void setTitle(){
         String hint="Nouveau";
-        String title = "Modifiez";
+        String title = "";
         switch (toDo){
             case USERNAME_TEXT:
                 title += "Nom d'utilisateur";
@@ -65,6 +68,27 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
     }
 
     private void update(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        switch (toDo){
+            case USERNAME_TEXT:
 
+                break;
+            case PHONE_TEXT:
+
+                break;
+            case EMAIL_TEXT:
+                user.updateEmail(vBinder.newValueTxt.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+
+                        }
+                    }
+                });
+                break;
+            default:
+                vBinder.titleLbl.setText("Modifiez");
+                break;
+        }
     }
 }
