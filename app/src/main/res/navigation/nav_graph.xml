@@ -25,5 +25,9 @@
     <dialog
         android:id="@+id/updateBtmSheet"
         android:name="com.kitoko.forum.activities.UpdateBtmSheet"
-        android:label="UpdateBtmSheet" />
+        android:label="UpdateBtmSheet" >
+        <argument
+            android:name="property"
+            app:argType="string" />
+    </dialog>
 </navigation>

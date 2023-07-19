@@ -47,7 +47,13 @@ public class ProfileFragment extends Fragment {
         vBinder.phoneNumberLbl.setText(phone);
         vBinder.emailLbl.setText(email);
 
-        vBinder.usrnmLbl.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.profile2update));
+        vBinder.usrnmLbl.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.USERNAME_TEXT)));
+        vBinder.phoneNumberLbl.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.PHONE_TEXT)));
+        vBinder.emailLbl.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.EMAIL_TEXT)));
+
 
         vBinder.signoutBtn.setOnClickListener(v ->
             FirebaseAuth.getInstance().signOut()
