@@ -4,4 +4,6 @@
     <string name="text_btn_con">connexion</string>
     <string name="text_sign_out">Déconnexion</string>
     <string name="text_delete">Supprimer</string>
+    <string name="text_cancel">annuler</string>
+    <string name="text_update">modifier</string>
 </resources>
