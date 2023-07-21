@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.kitoko.forum.R;
 import com.kitoko.forum.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -47,8 +46,8 @@ public class ProfileFragment extends Fragment {
 
         vBinder.usrnmLbl.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.USERNAME_TEXT)));
-        vBinder.phoneNumberLbl.setOnClickListener(v -> Navigation.findNavController(v)
-                .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.PHONE_TEXT)));
+        /*vBinder.phoneNumberLbl.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.PHONE_TEXT)));*/
 
         vBinder.signoutBtn.setOnClickListener(v ->
             FirebaseAuth.getInstance().signOut()

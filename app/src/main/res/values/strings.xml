@@ -6,4 +6,6 @@
     <string name="text_delete">Supprimer</string>
     <string name="text_cancel">annuler</string>
     <string name="text_update">modifier</string>
+    <string name="username_text">Nom d\'utilisateur</string>
+    <string name="new_username_text">Nouveau nom</string>
 </resources>

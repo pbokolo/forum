@@ -1,6 +1,5 @@
 package com.kitoko.forum.activities;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,11 @@ import com.kitoko.forum.databinding.BottomSheetUpdateBinding;
 
 public class UpdateBtmSheet extends BottomSheetDialogFragment {
 
-    public static final String USERNAME_TEXT= "username";
-    public static final String EMAIL_TEXT= "email";
-    public static final String PHONE_TEXT= "PHONE";
+    public static final String USERNAME_TEXT = "username";
+    public static final String PHONE_TEXT = "PHONE";
 
-   private BottomSheetUpdateBinding vBinder;
-   private String toDo;
+    private BottomSheetUpdateBinding vBinder;
+    private String toDo;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,47 +34,22 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-       vBinder = BottomSheetUpdateBinding.inflate(inflater);
-       setTitle();
-       vBinder.submitBtn.setOnClickListener(v -> update());
-
-
-
+        vBinder = BottomSheetUpdateBinding.inflate(inflater);
         return vBinder.getRoot();
     }
 
-    private void setTitle(){
-        String hint="Nouveau";
-        String title = "";
-        switch (toDo){
-            case USERNAME_TEXT:
-                title += "Nom d'utilisateur";
-                hint += " "+"nom";
-                break;
-            case PHONE_TEXT:
-                title += "Numéro de téléphone";
-                hint += " "+ "numéro de téléphone";
-                break;
-            case EMAIL_TEXT:
-                title += "Email";
-                hint = "Nouvel email";
-                break;
-            default:
-                vBinder.titleLbl.setText("Modifiez");
-                break;
-        }
-
-        vBinder.titleLbl.setText(title);
-        vBinder.newValueTxt.setHint(hint);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        vBinder.submitBtn.setOnClickListener(v -> update());
     }
 
-    private void update(){
+    private void update() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest profileUpdates;
 
-        switch (toDo){
+        switch (toDo) {
             case USERNAME_TEXT:
-                 profileUpdates = new UserProfileChangeRequest.Builder()
+                profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(vBinder.newValueTxt.getText().toString())
                         .build();
 
@@ -85,7 +58,7 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
                                 dismiss();
-                            }else{
+                            } else {
                                 Toast.makeText(getContext(), "Not updated", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -93,21 +66,7 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
             case PHONE_TEXT:
 
                 break;
-            case EMAIL_TEXT:
-                profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
-                        .build();
 
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                break;
-            default:
-                vBinder.titleLbl.setText("Modifiez");
-                break;
         }
     }
 }
