@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.kitoko.forum.databinding.BottomSheetUpdateBinding;
 
 public class UpdateBtmSheet extends BottomSheetDialogFragment {
@@ -69,9 +71,25 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
 
     private void update(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         switch (toDo){
             case USERNAME_TEXT:
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(vBinder.newValueTxt.getText().toString())
+                        .build();
 
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
+                                    dismiss();
+                                }else{
+                                    Toast.makeText(getContext(), "Not updated", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                 break;
             case PHONE_TEXT:
 
