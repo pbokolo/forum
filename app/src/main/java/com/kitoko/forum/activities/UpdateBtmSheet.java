@@ -1,5 +1,6 @@
 package com.kitoko.forum.activities;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,9 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
        vBinder = BottomSheetUpdateBinding.inflate(inflater);
        setTitle();
        vBinder.submitBtn.setOnClickListener(v -> update());
@@ -71,10 +74,11 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
 
     private void update(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        UserProfileChangeRequest profileUpdates;
 
         switch (toDo){
             case USERNAME_TEXT:
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                 profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(vBinder.newValueTxt.getText().toString())
                         .build();
 
@@ -95,14 +99,19 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
 
                 break;
             case EMAIL_TEXT:
-                user.updateEmail(vBinder.newValueTxt.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                        .build();
 
-                        }
-                    }
-                });
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                 break;
             default:
                 vBinder.titleLbl.setText("Modifiez");
