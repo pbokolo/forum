@@ -40,20 +40,15 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         String phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
         String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         vBinder.usrnmLbl.setText(username);
         vBinder.phoneNumberLbl.setText(phone);
-        vBinder.emailLbl.setText(email);
 
         vBinder.usrnmLbl.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.USERNAME_TEXT)));
         vBinder.phoneNumberLbl.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.PHONE_TEXT)));
-        vBinder.emailLbl.setOnClickListener(v -> Navigation.findNavController(v)
-                .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.EMAIL_TEXT)));
-
 
         vBinder.signoutBtn.setOnClickListener(v ->
             FirebaseAuth.getInstance().signOut()

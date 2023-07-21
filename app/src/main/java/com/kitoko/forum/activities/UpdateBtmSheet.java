@@ -10,8 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -83,15 +81,12 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
                         .build();
 
                 user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
-                                    dismiss();
-                                }else{
-                                    Toast.makeText(getContext(), "Not updated", Toast.LENGTH_SHORT).show();
-                                }
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
+                                dismiss();
+                            }else{
+                                Toast.makeText(getContext(), "Not updated", Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;
@@ -104,12 +99,9 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
                         .build();
 
                 user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
-                                }
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;

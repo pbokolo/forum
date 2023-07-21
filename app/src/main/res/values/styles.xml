@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextView">
+        <item name="android:drawablePadding">@dimen/items_separation</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.BodyMedium</item>
+        <item name="android:paddingTop">@dimen/widget_padding</item>
+        <item name="android:paddingBottom">@dimen/widget_padding</item>
+    </style>
+</resources>
