@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.kitoko.forum.databinding.FragmentProfileBinding;
 
@@ -43,6 +45,9 @@ public class ProfileFragment extends Fragment {
         String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         vBinder.usrnmLbl.setText(username);
         vBinder.phoneNumberLbl.setText(phone);
+        Glide.with(getContext())
+                .load("https://images.freeimages.com/images/large-previews/f98/black-coffee-1185883.jpg")
+                .apply(RequestOptions.circleCropTransform()).into(vBinder.profileImage);
 
         vBinder.usrnmLbl.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.USERNAME_TEXT)));
