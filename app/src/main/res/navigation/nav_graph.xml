@@ -12,6 +12,9 @@
         <action
             android:id="@+id/main2profile"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/main2newSubject"
+            app:destination="@id/newSubjectDialog" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -30,4 +33,8 @@
             android:name="property"
             app:argType="string" />
     </dialog>
+    <dialog
+        android:id="@+id/newSubjectDialog"
+        android:name="com.kitoko.forum.controllers.fragments.NewSubjectDialog"
+        android:label="NewSubjectDialog" />
 </navigation>

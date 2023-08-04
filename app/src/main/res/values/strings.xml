@@ -13,5 +13,6 @@
     <string name="uploading_text">Téléchargement...</string>
     <string name="profile_updated_text">Profil mis à jour</string>
     <string name="new_subject_text">Nouveau sujet</string>
+    <string name="title_text">Titre</string>
     <string name="create_text">créer</string>
 </resources>

@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
         android:ems="10"
+        android:hint="@string/title_text"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
