@@ -10,10 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.kitoko.forum.databinding.BottomSheetUpdateBinding;
+import com.kitoko.forum.model.AuthInstance;
 
 public class UpdateBtmSheet extends BottomSheetDialogFragment {
 
@@ -44,7 +44,7 @@ public class UpdateBtmSheet extends BottomSheetDialogFragment {
     }
 
     private void update() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = AuthInstance.getInstance();
         UserProfileChangeRequest profileUpdates;
 
         switch (toDo) {

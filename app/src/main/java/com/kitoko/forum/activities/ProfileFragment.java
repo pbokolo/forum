@@ -34,6 +34,7 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.kitoko.forum.databinding.FragmentProfileBinding;
+import com.kitoko.forum.model.AuthInstance;
 
 import java.util.Objects;
 
@@ -136,7 +137,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void uploadPhotoInFirebase(Uri uri) {
-        String me = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String me = AuthInstance.getInstance().getUid();
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         //The path
         String path = me+"/profile/"+ me+".png";
