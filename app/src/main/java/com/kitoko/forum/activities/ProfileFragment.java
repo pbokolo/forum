@@ -169,6 +169,7 @@ public class ProfileFragment extends Fragment {
 
         //Listen to the completion of the task
         getDownloadUrl.addOnCompleteListener(getActivity(), task -> {
+
             //Gets the result
             Uri downloadUri = task.getResult();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
