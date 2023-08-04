@@ -12,5 +12,5 @@
     <string name="faillure_text">Échec</string>
     <string name="uploading_text">Téléchargement...</string>
     <string name="profile_updated_text">Profil mis à jour</string>
-
+    <string name="new_subject_text">Nouveau sujet</string>
 </resources>

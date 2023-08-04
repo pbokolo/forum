@@ -31,7 +31,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        vBinder.nextBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.main2profile));
+        //vBinder.nextBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.main2profile));
     }
 
     @Override
