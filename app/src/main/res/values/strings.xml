@@ -8,4 +8,9 @@
     <string name="text_update">modifier</string>
     <string name="username_text">Nom d\'utilisateur</string>
     <string name="new_username_text">Nouveau nom</string>
+    <string name="wait_text">Veuillez patienter</string>
+    <string name="faillure_text">Échec</string>
+    <string name="uploading_text">Téléchargement...</string>
+    <string name="profile_updated_text">Profil mis à jour</string>
+
 </resources>

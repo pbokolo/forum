@@ -33,6 +33,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.kitoko.forum.R;
 import com.kitoko.forum.databinding.FragmentProfileBinding;
 import com.kitoko.forum.model.AuthInstance;
 import com.kitoko.forum.model.StorageInstance;
@@ -83,7 +84,9 @@ public class ProfileFragment extends Fragment {
         String phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
         String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         Uri profilePicture = AuthInstance.getInstance().getPhotoUrl();
-        Uri defaultP = Uri.parse("https://images.freeimages.com/images/large-previews/f98/black-coffee-1185883.jpg");
+        if(profilePicture == null) {
+            profilePicture = Uri.parse("https://images.freeimages.com/images/large-previews/f98/black-coffee-1185883.jpg");
+        }
         vBinder.usrnmLbl.setText(username);
         vBinder.phoneNumberLbl.setText(phone);
 
@@ -117,26 +120,21 @@ public class ProfileFragment extends Fragment {
     }
 
     /**
-     * Checks if the access to local storage is granted
-     * @return A boolean
+     * Vérifie si l'accès aux fichiers est autorisé
+     * @return Un booléen
      */
     private boolean isStoragePermissionGranted(){
-
         return ActivityCompat.checkSelfPermission(getContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED;
-
-
     }
 
     /**
-     * Displays a prompt to request for permission
+     * Affiche la boite de dialogue pour demander l'accès aux fichiers
      */
     private void requestStoragePermission() {
-
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-
     }
 
     private void uploadPhotoInFirebase(Uri uri) {
@@ -153,7 +151,7 @@ public class ProfileFragment extends Fragment {
         UploadTask uploadTask = storageReference.putFile(uri, storageMetadata);
         //Creates a progress dialog
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Veuillez patienter");
+        progressDialog.setMessage(getString(R.string.uploading_text));
         progressDialog.setCancelable(false);
         //Listen to the progress
         uploadTask.addOnProgressListener(snapshot -> {
@@ -164,10 +162,11 @@ public class ProfileFragment extends Fragment {
         //Gets the url of the file
         Task<Uri> getDownloadUrl = uploadTask.continueWithTask(task -> {
             if(!task.isSuccessful()){
-                Toast.makeText(getContext(), "Echec",
+                Toast.makeText(getContext(), getString(R.string.faillure_text),
                         Toast.LENGTH_SHORT).show();
                 throw Objects.requireNonNull(task.getException());
             }
+            progressDialog.dismiss();
             return  storageReference.getDownloadUrl();
         });
 
@@ -187,11 +186,11 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                progressDialog.dismiss();
+                                Toast.makeText(getContext(), getString(R.string.profile_updated_text),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-
         });
 
 
