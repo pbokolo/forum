@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.kitoko.forum.databinding.FragmentProfileBinding;
 import com.kitoko.forum.model.AuthInstance;
+import com.kitoko.forum.model.StorageInstance;
 
 import java.util.Objects;
 
@@ -138,7 +139,7 @@ public class ProfileFragment extends Fragment {
 
     private void uploadPhotoInFirebase(Uri uri) {
         String me = AuthInstance.getInstance().getUid();
-        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        FirebaseStorage firebaseStorage = StorageInstance.getInstance();
         //The path
         String path = me+"/profile/"+ me+".png";
         //The reference to the bucket
@@ -184,7 +185,7 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-
+                                progressDialog.dismiss();
                             }
                         }
                     });
