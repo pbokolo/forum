@@ -82,10 +82,12 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
         String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        Uri profilePicture = AuthInstance.getInstance().getPhotoUrl();
+        Uri defaultP = Uri.parse("https://images.freeimages.com/images/large-previews/f98/black-coffee-1185883.jpg");
         vBinder.usrnmLbl.setText(username);
         vBinder.phoneNumberLbl.setText(phone);
 
-        renderImage(Uri.parse("https://images.freeimages.com/images/large-previews/f98/black-coffee-1185883.jpg"));
+        renderImage(profilePicture);
 
         vBinder.usrnmLbl.setOnClickListener(v -> Navigation.findNavController(v)
                 .navigate(ProfileFragmentDirections.profile2update(UpdateBtmSheet.USERNAME_TEXT)));
