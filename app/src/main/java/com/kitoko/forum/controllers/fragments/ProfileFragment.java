@@ -1,4 +1,4 @@
-package com.kitoko.forum.activities;
+package com.kitoko.forum.controllers.fragments;
 
 import static android.app.Activity.RESULT_OK;
 

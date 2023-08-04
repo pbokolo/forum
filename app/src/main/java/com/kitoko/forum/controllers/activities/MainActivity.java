@@ -1,4 +1,4 @@
-package com.kitoko.forum.activities;
+package com.kitoko.forum.controllers.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;

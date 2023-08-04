@@ -1,4 +1,4 @@
-package com.kitoko.forum.activities;
+package com.kitoko.forum.controllers.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

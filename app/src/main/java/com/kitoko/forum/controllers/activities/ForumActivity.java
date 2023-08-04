@@ -1,4 +1,4 @@
-package com.kitoko.forum.activities;
+package com.kitoko.forum.controllers.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

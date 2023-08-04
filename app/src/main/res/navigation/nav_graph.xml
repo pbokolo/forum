@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.kitoko.forum.activities.MainFragment"
+        android:name="com.kitoko.forum.controllers.fragments.MainFragment"
         android:label="Forum"
         tools:layout="@layout/fragment_main">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.kitoko.forum.activities.ProfileFragment"
+        android:name="com.kitoko.forum.controllers.fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <dialog
         android:id="@+id/updateBtmSheet"
-        android:name="com.kitoko.forum.activities.UpdateBtmSheet"
+        android:name="com.kitoko.forum.controllers.fragments.UpdateBtmSheet"
         android:label="UpdateBtmSheet" >
         <argument
             android:name="property"
