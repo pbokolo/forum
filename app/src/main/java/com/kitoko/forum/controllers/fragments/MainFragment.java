@@ -8,8 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.kitoko.forum.R;
 import com.kitoko.forum.databinding.FragmentMainBinding;
@@ -22,10 +26,25 @@ public class MainFragment extends Fragment {
 
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.mni_profile){
+            Navigation.findNavController(vBinder.newSubjectBtn).navigate(MainFragmentDirections.main2profile());
+            return  true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
