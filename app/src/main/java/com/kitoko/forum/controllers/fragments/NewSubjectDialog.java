@@ -23,7 +23,7 @@ public class NewSubjectDialog extends DialogFragment {
         //Inflates the layout view
         View layoutView = getLayoutInflater().inflate(R.layout.dialog_new_subject, null);
 
-        EditText nameTxt = layoutView.findViewById(R.id.titleTxt);
+        EditText titleTxt = layoutView.findViewById(R.id.titleTxt);
 
         Button cancelBtn = layoutView.findViewById(R.id.cancelButton),
                 createBtn = layoutView.findViewById(R.id.createBtn);
