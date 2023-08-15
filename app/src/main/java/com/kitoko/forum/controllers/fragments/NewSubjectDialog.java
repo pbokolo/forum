@@ -12,6 +12,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.kitoko.forum.R;
+import com.kitoko.forum.business.Subject;
+import com.kitoko.forum.model.AuthInstance;
+import com.kitoko.forum.model.SubjectDAO;
+
+import java.util.Date;
 
 public class NewSubjectDialog extends DialogFragment {
 
@@ -29,7 +34,17 @@ public class NewSubjectDialog extends DialogFragment {
                 createBtn = layoutView.findViewById(R.id.createBtn);
 
         cancelBtn.setOnClickListener(v -> dismiss());
-        createBtn.setOnClickListener(v -> dismiss());
+        createBtn.setOnClickListener(v -> {
+
+            Subject subject = new Subject();
+            subject.setTitle(titleTxt.getText().toString());
+            subject.setCreator(AuthInstance.getInstance().getUid());
+            subject.setDateCreated(new Date());
+
+            SubjectDAO.create(subject);
+
+            dismiss();
+        });
 
         dialogBuilder.setView(layoutView);
 
