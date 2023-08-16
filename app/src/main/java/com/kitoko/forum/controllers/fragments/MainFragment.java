@@ -13,9 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.Query;
 import com.kitoko.forum.R;
+import com.kitoko.forum.business.Subject;
 import com.kitoko.forum.databinding.FragmentMainBinding;
 
 public class MainFragment extends Fragment {
@@ -60,4 +61,13 @@ public class MainFragment extends Fragment {
         
         return vBinder.getRoot();
     }
+
+    private FirestoreRecyclerOptions<Subject> generateOptions(Query query){
+        return new FirestoreRecyclerOptions.Builder<Subject>()
+                .setQuery(query, Subject.class)
+                .setLifecycleOwner(this)
+                .build();
+    }
+
+
 }
